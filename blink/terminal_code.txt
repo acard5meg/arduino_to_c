@@ -1,0 +1,7 @@
+# Below are terminal commands to flash c code to microcontroller
+
+avr-gcc -mmcu=atmega328p -Wall -Os -o blink.elf blink.c
+avr-objcopy -j .text -j .data -O ihex blink.elf blink.hex
+avrdude -c arduino -p m328p -P /dev/ttyACM0 -U flash:w:blink.hex
+
+The /dev/ttyACMO is the port the USB connects to.
